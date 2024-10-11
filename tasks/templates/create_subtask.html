@@ -1,0 +1,53 @@
+<!-- Formulario para crear una nueva subtarea -->
+<form id="createSubtaskForm" method="POST" action="{% url 'create_subtask' parent_task.id %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <!-- Etiqueta para el campo de título -->
+        <label for="{{ form.title.id_for_label }}">Título</label>
+        <!-- Campo de entrada para el título de la subtarea -->
+        {{ form.title }}
+    </div>
+    <div class="form-group">
+        <!-- Etiqueta para el campo de descripción -->
+        <label for="{{ form.description.id_for_label }}">Descripción</label>
+        <!-- Campo de entrada para la descripción de la subtarea -->
+        {{ form.description }}
+    </div>
+    <div class="form-check">
+        <!-- Campo de entrada para marcar si la subtarea es importante -->
+        {{ form.important }}
+        <!-- Etiqueta para el campo de importancia -->
+        <label class="form-check-label" for="{{ form.important.id_for_label }}">Importante</label>
+    </div>
+    <!-- Botón para enviar el formulario -->
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+
+<!-- Script para manejar la creación de subtareas -->
+<script>
+$(document).ready(function() {
+    // Cuando el formulario de crear subtarea sea enviado
+    $('#createSubtaskForm').on('submit', function(e) {
+        e.preventDefault();  // Previene el envío del formulario tradicional
+        $.ajax({
+            type: 'POST',  // Envía los datos usando el método POST
+            url: $(this).attr('action'),  // La URL de la acción del formulario
+            data: $(this).serialize(),  // Serializa los datos del formulario para enviarlos
+            success: function(response) {
+                if (response.message) {
+                    // Muestra un mensaje de éxito
+                    alert(response.message);
+                    // Cierra el modal después de crear la subtarea
+                    $('#createSubtaskModal').modal('hide');
+                    // Recarga la página para actualizar la lista de subtareas
+                    location.reload();
+                }
+            },
+            error: function(xhr, status, error) {
+                // Muestra un mensaje de error si falla la creación de la subtarea
+                alert('Error al crear la subtarea: ' + error);
+            }
+        });
+    });
+});
+</script>

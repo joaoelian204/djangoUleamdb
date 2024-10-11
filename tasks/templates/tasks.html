@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center display-3 py-5">{{ tipopagina }}</h1>
+            <ul id="task-list" class="list-group" ondrop="drop(event)" ondragover="allowDrop(event)">
+                {% for task in tasks %}
+                    <li class="list-group-item" id="task-{{ task.id }}" draggable="true" ondragstart="drag(event)">
+                        <header class="d-flex justify-content-between">
+                            {% if task.important %}
+                                <h1 class="link-danger">{{ task.title }}</h1>
+                            {% else %}
+                                <h1>{{ task.title }}</h1>
+                            {% endif %}
+                            <p>{{ task.user.username }}</p>
+                        </header>
+                        <p>{{ task.description }}</p>
+                        <p>{{ task.datecompleted|date:'M j Y:i' }}</p>
+
+                        {% if task.datecompleted %}
+                            <form action="{% url 'delete_task' task.id %}" method="POST" style="display:inline;">
+                                {% csrf_token %}
+                                <button class="btn btn-danger">Eliminar</button>
+                            </form>
+                        {% else %}
+                            <a class="btn btn-info" href="{% url 'task_detail' task.id %}">Detalles</a>
+                            <form action="{% url 'complete_task' task.id %}" method="POST" style="display:inline;">
+                                {% csrf_token %}
+                                <button class="btn btn-secondary">Completar</button>
+                            </form>
+                            <form action="{% url 'delete_task' task.id %}" method="POST" style="display:inline;">
+                                {% csrf_token %}
+                                <button class="btn btn-danger">Eliminar</button>
+                            </form>
+                        {% endif %}
+                    </li>
+                {% empty %}
+                    <li class="list-group-item">No hay tareas</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</main>
+
+<script>
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+    
+    function drag(event) {
+        event.dataTransfer.setData("text", event.target.id);
+    }
+    
+    function drop(event) {
+        event.preventDefault();
+        var data = event.dataTransfer.getData("text");
+        var subtaskId = data.split('-')[1];  // Extraer el ID de la subtarea arrastrada
+        var taskId = event.target.id.split('-')[1]; // Extraer el ID de la tarea donde se soltó
+    
+        // Aquí puedes implementar la lógica para agregar la subtarea a la tarea principal
+        // Esto podría ser una llamada AJAX para actualizar la base de datos.
+        console.log("Subtarea " + subtaskId + " se ha soltado en la tarea principal " + taskId + ".");
+    
+        // Ejemplo de llamada AJAX (asegúrate de ajustar la URL y los datos según tu API)
+        fetch(`/tasks/${taskId}/add_subtask/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken') // Asegúrate de tener la función getCookie para obtener el token CSRF
+            },
+            body: JSON.stringify({ subtask_id: subtaskId })
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log("Subtarea añadida con éxito.");
+                // Puedes actualizar la interfaz o recargar la página si es necesario
+            } else {
+                console.error("Error al añadir la subtarea.");
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    }
+    
+    // Función para obtener el token CSRF
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Comprueba si este es el cookie que buscamos
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    </script>
+{% endblock %}
