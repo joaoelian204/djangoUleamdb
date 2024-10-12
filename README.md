@@ -111,15 +111,16 @@ Visita `http://127.0.0.1:8000/` en tu navegador para ver la aplicación.
 - **Autenticación**: Sistema de registro e inicio de sesión de usuarios.
 
 
-Contacto
+## Contacto
+
 Este proyecto fue realizado por estudiantes de la Universidad Laica Eloy Alfaro de Manabí, de la carrera de Software, para la materia de Base de Datos impartida por el Ingeniero Robert Moreira Centeno. Este proyecto es una modificación al taller 81 proporcionado por el ingeniero.
-Integrantes:
 
-JOAO ELIAN MOREIRA PALMA
-KELLY DAYANA CANCHINGRE QUEVEDO
-SAUL IVAN CASTRO MUÑOZ
-LILIBETH JAMILETH PINARGOTE INTRIAGO
+**Integrantes**:
+- Joao Elian Moreira Palma
+- Kelly Dayana Canchingre Quevedo
+- Saul Ivan Castro Muñoz
+- Lilibeth Jamileth Pinargote Intriago
 
-Instructor:
+**Instructor**:  
 Ing. Robert Moreira Centeno
 
