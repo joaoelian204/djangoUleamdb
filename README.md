@@ -23,7 +23,7 @@ Para ejecutar este proyecto, necesitarás tener instalado:
 
 1. Clona este repositorio:
    ```
-   git clone <url-del-repositorio>
+   git clone https://github.com/joaoelian204/djangoUleamdb.git
    ```
 2. Crea y activa un entorno virtual:
    ```
