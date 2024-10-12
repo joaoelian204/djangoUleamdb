@@ -1,5 +1,5 @@
 # Aplicación de Gestión de Tareas con Django
-
+![Django Logo](Django.png)
 Esta es una aplicación web de gestión de tareas desarrollada con Django. Permite a los usuarios crear, organizar y gestionar tareas y subtareas.
 
 ## Características
