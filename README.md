@@ -8,7 +8,7 @@ Esta es una aplicación web de gestión de tareas desarrollada con Django. Permi
 - Creación, edición y eliminación de tareas
 - Creación, edición y eliminación de subtareas
 - Marcado de tareas y subtareas como completadas
-- Reordenamiento de tareas mediante arrastrar y soltar
+- Reordenamiento de subtareas mediante arrastrar y soltar
 - Interfaz responsiva utilizando Bootstrap
 
 ## Requisitos
@@ -107,34 +107,19 @@ Visita `http://127.0.0.1:8000/` en tu navegador para ver la aplicación.
 
 - **Gestión de Tareas**: Los usuarios pueden crear, editar, eliminar y marcar tareas como completadas.
 - **Subtareas**: Cada tarea puede tener múltiples subtareas, que también se pueden gestionar.
-- **Reordenamiento**: Las tareas se pueden reordenar mediante drag and drop.
+- **Reordenamiento**: Las subtareas se pueden reordenar mediante drag and drop.
 - **Autenticación**: Sistema de registro e inicio de sesión de usuarios.
 
-## Pruebas
 
-Para ejecutar las pruebas:
+Contacto
+Este proyecto fue realizado por estudiantes de la Universidad Laica Eloy Alfaro de Manabí, de la carrera de Software, para la materia de Base de Datos impartida por el Ingeniero Robert Moreira Centeno. Este proyecto es una modificación al taller 81 proporcionado por el ingeniero.
+Integrantes:
 
-```
-python manage.py test
-```
+JOAO ELIAN MOREIRA PALMA
+KELLY DAYANA CANCHINGRE QUEVEDO
+SAUL IVAN CASTRO MUÑOZ
+LILIBETH JAMILETH PINARGOTE INTRIAGO
 
-## Contribuir
-
-Si deseas contribuir a este proyecto, por favor:
-
-1. Haz un fork del repositorio
-2. Crea una nueva rama (`git checkout -b feature/AmazingFeature`)
-3. Haz commit de tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Haz push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
-
-## Licencia
-
-Este proyecto está bajo la licencia MIT. Ver el archivo `LICENSE` para más detalles.
-
-## Contacto
-
-Tu Nombre - [@tutwitter](https://twitter.com/tutwitter) - email@example.com
-
-Link del Proyecto: [https://github.com/tu-usuario/tu-repositorio](https://github.com/tu-usuario/tu-repositorio)
+Instructor:
+Ing. Robert Moreira Centeno
 
